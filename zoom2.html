@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #00ff00;
+            font-family: 'Orbitron', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 36px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 20px 0;
+        }
+
+        #searchInput {
+            text-align: center;
+            margin: 20px auto;
+        }
+
+        #query {
+            width: 60%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #333;
+            border: 2px solid #00ff00;
+            color: #00ff00;
+            border-radius: 5px;
+        }
+
+        #searchButton {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+
+        #searchResults {
+            display: flex;
+            justify-content: space-between;
+            margin: 0 auto;
+            flex-wrap: wrap; /* Allow iframes to wrap on smaller screens */
+        }
+
+        iframe {
+            width: 31vw; /* Set the width of the iframes */
+            /* max-width: 400px; Set a maximum width */
+            height: 400px;
+            border: 1px solid #00ff00;
+            margin: 10px;
+            box-sizing: border-box; /* Include padding and border in the width calculation */
+        }
+
+        /* Add a futuristic cyberpunk border glow effect to iframes */
+        iframe:hover {
+            border: 2px solid #007BFF;
+            box-shadow: 0 0 10px #007BFF;
+            transition: border 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #wikipedia {
+            background-color: #333;
+            padding: 20px;
+            border: 2px solid #00ff00;
+            border-radius: 5px;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        #wikipedia-title {
+            font-size: 24px;
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        #wikipedia-content {
+            font-size: 16px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+    <h1>Search Results</h1>
+    <div id="searchInput">
+        <input type="text" id="query" placeholder="Enter your query">
+        <button id="searchButton">Search</button>
+    </div>
+    <div id="wikipedia">
+        <div id="wikipedia-title">Wikipedia Content</div>
+        <div id="wikipedia-content"></div>
+    </div>
+    <div id="searchResults">
+        <!-- <iframe id="pinterestIframe" src=""></iframe> -->
+        <iframe id="bingIframe" src=""></iframe>
+        <iframe id="bingImagesIframe" src=""></iframe>
+        <iframe id="wikipediaIframe" src=""></iframe>
+    </div>
+
+  
+
+    <script>
+        // JavaScript for handling user input and loading iframes
+        document.getElementById("searchButton").addEventListener("click", function () {
+            const query = document.getElementById("query").value;
+            const pinterestIframe = document.getElementById("pinterestIframe");
+            const bingIframe = document.getElementById("bingIframe");
+            const bingImagesIframe = document.getElementById("bingImagesIframe");
+            const wikipediaIframe = document.getElementById("wikipediaIframe");
+
+            // Set the source URLs for iframes with the appropriate search queries
+            // pinterestIframe.src = `https://www.pinterest.com/search?q=${query}`;
+            bingIframe.src = `https://www.bing.com/search?q=${query}`;
+            bingImagesIframe.src = `https://www.bing.com/images/search?q=${query}`;
+            wikipediaIframe.src = `https://en.wikipedia.org/wiki/${query}`;
+
+            // Fetch Wikipedia content and display it in the sci-fi way
+            fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    const wikipediaContent = document.getElementById("wikipedia-content");
+                    wikipediaContent.innerHTML = data.extract;
+                })
+                .catch(error => {
+                    console.error("Error fetching Wikipedia data:", error);
+                });
+        });
+    </script>
+</body>
+</html>

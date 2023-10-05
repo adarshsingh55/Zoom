@@ -1,0 +1,65 @@
+body {
+    background-color: #000;
+    color: #00ff00;
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 36px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 20px 0;
+}
+
+#searchInput {
+    text-align: center;
+    margin: 20px auto;
+}
+
+#query {
+    width: 60%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #333;
+    border: 2px solid #00ff00;
+    color: #00ff00;
+    border-radius: 5px;
+}
+
+#searchButton {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+#searchResults {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    flex-wrap: wrap; /* Allow iframes to wrap on smaller screens */
+}
+
+iframe {
+    width: 30%; /* Set the width of the iframes */
+    max-width: 400px; /* Set a maximum width */
+    height: 400px;
+    border: 1px solid #00ff00;
+    margin: 10px;
+    box-sizing: border-box;
+    border:none; /* Include padding and border in the width calculation */
+}
+
+/* Add a futuristic cyberpunk border glow effect to iframes */
+iframe:hover {
+    border: 2px solid #007BFF;
+    box-shadow: 0 0 10px #007BFF;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}

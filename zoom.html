@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+    <!-- <style>
+        #searchResults {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        iframe {
+            width: 30%;
+            height: 400px;
+            border: 1px solid #ccc;
+        }
+
+        #query {
+            width: 60%;
+        }
+
+        #searchButton {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style> -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Search Results</h1>
+    <div id="searchInput">
+        <input type="text" id="query" placeholder="Enter your query">
+        <button id="searchButton">Search</button>
+    </div>
+    <div id="searchResults">
+        <iframe id="pinterestIframe" src=""></iframe>
+        <iframe id="bingIframe" src=""></iframe>
+        <iframe id="bingImagesIframe" src=""></iframe>
+        <iframe id="wikipediaIframe" src=""></iframe>
+    </div>
+
+    <script>
+        // JavaScript for handling user input and loading iframes
+        document.getElementById("searchButton").addEventListener("click", function () {
+            const query = document.getElementById("query").value;
+            const pinterestIframe = document.getElementById("pinterestIframe");
+            const bingIframe = document.getElementById("bingIframe");
+            const wikipediaIframe = document.getElementById("wikipediaIframe");
+
+            // Set the source URLs for iframes with the appropriate search queries
+            pinterestIframe.src = `https://www.pinterest.com/search?q=${query}`;
+            bingIframe.src = `https://www.bing.com/search?q=${query}`;
+            bingImagesIframe.src = `https://www.bing.com/images/search?q=${query}`;
+            wikipediaIframe.src = `https://en.wikipedia.org/wiki/${query}`;
+        });
+    </script>
+</body>
+</html>
